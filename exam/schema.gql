@@ -1,0 +1,9 @@
+type table1 {
+    x: Int!
+    y: String
+}
+
+type Query {
+    all: [table1!]!
+    one(x: Int!): table1!
+}

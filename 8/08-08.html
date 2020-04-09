@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My Form</title>
+</head>
+<body>
+	 <h1>Input values</h1>
+    <form action="/formparameter" method="post" enctype="multipart/form-data">
+        <label>Имя</label><br>
+        <input type="text" name="userName" id="userName" /><br><br>
+        <label>Возраст</label><br>
+        <input type="number" name="userAge" id="userAge"/><br><br>
+        <label>Дата рождения</label><br>
+        <input type="date" name="userBirth" /><br><br>
+		
+		<label>Любите котов?</label><br>
+        <input type="checkbox" name="cats" /><br><br>
+        <label>Вы женщина?</label><br>
+        <input type="radio" name="woman" /><br><br>
+        <!-- <label>Ваши комментарии: </label><br>
+        <input type="textarea" name="tarea" /><br><br> -->
+        <input type="submit" name="sub1" value="Отправить" />
+        <input type="submit" name="sub2" value="Отправить" />
+    </form>
+</body>
+</html>

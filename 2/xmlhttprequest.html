@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>js</title>
+	</head>
+	<body>
+
+		<h1>XMLHTTPRequest</h1>
+		
+		<div id="divResult"></div>
+
+
+
+		<script type="text/javascript">
+
+			let req = new XMLHttpRequest();
+
+			if(req) {
+				req.open("GET", "http://localhost:5000/api/name", true);
+
+				req.onreadystatechange = () => {
+					if(req.readyState == 4){
+
+						if(req.status == 200) {
+							divResult.innerText = req.responseText;}
+					}
+				};
+				req.onerror = function(e) {console.log("XMLHTTPRequest.onerror", e);}
+				req.send();
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mailer</title>
+</head>
+<body>
+<form id="mailer" action="/api/mailer" method="post">
+    <input type="email" name="from" placeholder="from" required><br /><br />
+    <input type="email" name="to" placeholder="to" required><br /><br />
+    <textarea name="comment" form="mailer" placeholder="Enter message here" required></textarea><br /><br />
+    <input type="submit" value="Send mail">
+</form>
+</body>
+</html>

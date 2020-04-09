@@ -1,0 +1,11 @@
+{
+  "name": "m0603xxx",
+  "version": "3.3.3",
+  "description": "trash",
+  "main": "m0603.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "olnexia",
+  "license": "ISC"
+}

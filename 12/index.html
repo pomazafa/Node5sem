@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Client</title>
+    <script>
+
+        let socket = new WebSocket('ws://localhost:4000/updates');
+        socket.onopen = function(event) {
+            console.log('connected');
+        }
+        socket.onmessage = function(event) {
+            console.log('message');
+            console.log(event.data);
+            loadFullTable();
+        }
+
+        function loadFullTable() {
+            indicator.style = 'display: block';
+            fetch('/')
+                .then(resp => resp.text())
+                .then(text => {
+                    last.textContent = text;
+                    let obj = JSON.parse(text);
+                    let resultHtml = '';
+                    obj.forEach(element => {
+                        resultHtml += `<tr><td>${element.id}</td><td>${element.name}</td><td>${element.bday}</td><td>${element.specility}</td></tr>`;
+                    });
+                    students.innerHTML = resultHtml;
+                    indicator.style = 'display: none';
+                });
+        }
+
+        window.onload = function () {
+            loadFullTable();
+        }
+    </script>
+</head>
+
+<body>
+    <table border="1">
+        <thead>
+            <th>id</th>
+            <th>name</th>
+            <th>bday</th>
+            <th>specility</th>
+        </thead>
+        <tbody id="students">
+        </tbody>
+    </table>
+    <details>
+        <summary>POST</summary>
+        <p>
+            <input type="number" placeholder="id" />
+            <input type="text" placeholder="name" />
+            <input type="date" placeholder="bday" />
+            <input type="text" placeholder="specility" />
+            <button>Send</button>
+        </p>
+    </details>
+    <details>
+        <summary>PUT</summary>
+        <p>
+            <input type="number" placeholder="id" />
+            <input type="text" placeholder="name" />
+            <input type="date" placeholder="bday" />
+            <input type="text" placeholder="specility" />
+            <button>Send</button>
+        </p>
+    </details>
+    <details>
+            <summary>DELETE</summary>
+            <p>
+                <input type="number" placeholder="id" />
+                <button>Send</button>
+            </p>
+        </details>
+    <pre id="indicator" style="display: none;">Loading...</pre>
+    <p>Last response:</p>
+    <pre id="last" style="background-color: lightgrey; border: 1px solid black; border-radius: 5px;"></pre>
+</body>
+
+</html>

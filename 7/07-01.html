@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Node 7</title>
+	<link rel="stylesheet" href="http://localhost:5000/c.css"></link>
+	<script type="text/javascript" src="http://localhost:5000/j.js"></script>
+</head>
+<body>
+
+	<img src="http://localhost:5000/image.png"></img>
+	
+	<br/>
+
+	<p id="divRes"/>
+
+
+
+	<script type="text/javascript">
+		fetch('http://localhost:5000/x.xml')  
+  					.then(function(response) {  
+    					return response.text();  
+  						})  
+  					.then(function(text) {  
+    					divRes.innerText = text;  
+  						})  ;
+	</script>
+	<p>
+	<video controls autoplay>
+  			<source src="http://localhost:5000/v.mp4" type="video/mp4">
+	</video>
+	</p>
+	<br/>
+
+	<a href="http://localhost:5000/d.docx">Document</a>
+		
+	<br/>
+
+	<div id="divResult"/>
+	<script type="text/javascript">
+
+			fetch('http://localhost:5000/jn.json')  
+  					.then(function(response) {  
+    					return response.text();  
+  						})  
+  					.then(function(text) {  
+    					divResult.innerText = text;  
+  						})  ;
+
+		</script>
+	
+
+	<br />
+
+	
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04-04/05</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<div id="get_result"></div>
+	<button onclick="Get()">GET</button>
+
+	<script type="text/javascript">
+		function Get() {
+			console.log('GET');
+			fetch('http://localhost:5000/api/db', {
+					method: 'GET', mode: 'no-cors',
+					headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+		})
+			.then(response => {return response.json(); })
+			.then((pdata) => {
+				console.log('pdata', pdata);
+				get_result.innerHTML = '';
+				pdata.forEach(el => {get_result.innerHTML += (el.id + '. ' + el.name + ' ' + el.bday + '<br/>')});
+			});
+	}
+
+	</script>
+
+	<br/>
+
+	<div style="padding: 20px">
+		<div class="row">
+			<label class="col-2">Идентификатор</label>
+			<input type="number" class="col-3" id="ID" min="0"/>
+		</div>
+		<div class="row">
+			<label class="col-2">ФИО</label>
+			<input type="text" class="col-3" id="NAME"/>
+		</div>
+		<div class="row">
+			<label class="col-2">Дата рождения</label>
+			<input type="date" class="col-3" id="BDay"/>
+		</div>
+
+		<div class="row">
+			<button class="col-2" onclick="Post()">POST</button>
+		</div>
+
+		<script type="text/javascript">
+			
+			function Post() {
+				console.log('POST');
+				fetch('http://localhost:5000/api/db', {
+					method: 'POST', mode: 'no-cors',
+					headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+					body: JSON.stringify({id:ID.value, name: NAME.value, bday:BDay.value})
+				})
+				.then(response => {return response.json();})
+				.then((pdata) => {console.log('POST.pdata', pdata);});
+			}
+		</script>
+
+
+		<div class="row">
+			<button class="col-2" onclick="Put()">PUT</button>
+		</div>
+
+		<script type="text/javascript">
+			
+			function Put() {
+				console.log('PUT');
+				fetch('http://localhost:5000/api/db', {
+					method: 'PUT',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify({id:ID.value, name: NAME.value, bday:BDay.value})
+				})
+				.then(response => {return response.json();})
+				.then((pdata) => {console.log('PUT.pdata', pdata);});
+			}
+		</script>
+
+		<div class="row">
+			<button class="col-2" onclick="Delete()">DELETE</button>
+		</div>
+			
+
+		<script type="text/javascript">
+			
+			function Delete() {
+				console.log('DELETE');
+				fetch('http://localhost:5000/api/db', {
+					method: 'DELETE',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify({id:ID.value})
+				})
+				.then(response => {return response.json();})
+				.then((pdata) => {console.log('Delete.pdata', pdata);});
+			}
+		</script>
+
+		
+</body>
+</html>

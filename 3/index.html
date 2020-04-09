@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='result'>
+    </div>
+    <script>
+    result.innerHTML = '';
+    let n = 0;
+    const d = Date.now();
+    for (var k = 1; k <= 20; k++) {
+        var url = 'http://localhost:5000/fact?k=' + k;
+        fetch(url, { method: 'GET', mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' } }).then(function(response) { return response.json(); }).then((pdata) => {
+            result.innerHTML += (n++) + ' Результат: ' + (Date.now() - d) + ' - ' + pdata.k + '/' + pdata.fact + '<br />';
+        });
+    }
+    </script>
+</body>
+
+</html>
